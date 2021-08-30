@@ -25,6 +25,7 @@ public class ProductManager {
         for (Product product : repository.findAll()) {
             if (matches(product, text)) {
                 Product[] tmp = new Product[result.length + 1];
+                System.arraycopy(result, 0, tmp, 0, result.length);
                 // используйте System.arraycopy, чтобы скопировать всё из result в tmp
                 tmp[tmp.length - 1] = product;
                 result = tmp;
@@ -36,7 +37,7 @@ public class ProductManager {
     public boolean matches(Product product, String search) {
         if (product instanceof Book) { // если в параметре product лежит объект класса Book
             Book book = (Book) product; // положем его в переменную типа Book чтобы пользоваться методами класса Book
-            if (((Book) product).getAuthor().contains(search)) { // проверим есть ли поисковое слово в данных об авторе
+            if (book.getAuthor().contains(search)) { // проверим есть ли поисковое слово в данных об авторе
                 return true;
             }
 
