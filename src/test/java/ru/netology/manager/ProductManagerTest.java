@@ -45,6 +45,13 @@ class ProductManagerTest {
     }
 
     @Test
+    void shouldSearchByNameBook2() {
+        Product[] expected = new Product[]{bk2};
+        Product[] actual = manager.searchBy("Драма на охоте");
+        assertArrayEquals(expected, actual);
+    }
+
+    @Test
     void shouldSearchByNameBookIfNoName() {
         Product[] expected = new Product[]{};
         Product[] actual = manager.searchBy("Гроза");
